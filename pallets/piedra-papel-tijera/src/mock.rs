@@ -1,4 +1,4 @@
-use crate as pallet_template;
+use crate as pallet_piedra_papel_tijera;
 use frame_support::traits::{ConstU16, ConstU64};
 use sp_core::H256;
 use sp_runtime::{
@@ -16,8 +16,8 @@ frame_support::construct_runtime!(
 		NodeBlock = Block,
 		UncheckedExtrinsic = UncheckedExtrinsic,
 	{
-		System: frame_system,
-		TemplateModule: pallet_template,
+		System: frame_system::{Pallet, Call, Config, Storage, Event<T>},
+		PiedraPapelTijera: pallet_piedra_papel_tijera::{Pallet, Call, Storage, Event<T>},
 	}
 );
 
@@ -48,9 +48,8 @@ impl frame_system::Config for Test {
 	type MaxConsumers = frame_support::traits::ConstU32<16>;
 }
 
-impl pallet_template::Config for Test {
+impl pallet_piedra_papel_tijera::Config for Test {
 	type RuntimeEvent = RuntimeEvent;
-	type WeightInfo = ();
 }
 
 // Build genesis storage according to the mock runtime.
